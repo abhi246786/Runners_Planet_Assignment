@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="30301" android:versionName="4.10" android:compileSdkVersion="29" android:compileSdkVersionCodename="10" package="com.what3words.android" platformBuildVersionCode="29" platformBuildVersionName="10">
+    <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="29"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
+    <uses-feature android:name="android.hardware.location" android:required="false"/>
+    <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-feature android:glEsVersion="20000" android:required="true"/>
+    <application android:theme="@style/AppTheme" android:label="@string/w3w_app_name" android:icon="@mipmap/app_icon" android:name="com.what3words.android.W3WApplication" android:launchMode="singleTask" android:allowBackup="true" android:hardwareAccelerated="true" android:largeHeap="true" android:supportsRtl="true" android:extractNativeLibs="true" android:usesCleartextTraffic="true" android:roundIcon="@mipmap/app_icon_round" android:appComponentFactory="androidx.core.app.CoreComponentFactory">
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="@string/google_maps_key"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@mipmap/app_icon"/>
+        <meta-data android:name="com.mixpanel.android.MPConfig.EnableDebugLogging" android:value="true"/>
+        <receiver android:name="com.what3words.photos.android.utils.PhotoShareReceiver" android:exported="false"/>
+        <receiver android:name="com.what3words.android.p018ui.update.UpdateBroadcastReceiver" android:enabled="true" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+        </receiver>
+        <provider android:name="androidx.core.content.FileProvider" android:exported="false" android:authorities="com.what3words.android.provider" android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths"/>
+        </provider>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.splash.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="http" android:host="w3w-app.onelink.me"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https" android:host="map.what3words.com"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="w3w"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="http" android:host="w3w.co"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https" android:host="w3w.co"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https" android:host="what3words.com" android:pathPrefix="/list"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="http" android:host="uk.w3w.co"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https" android:host="uk.w3w.co"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="w3w" android:host="list"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="w3w" android:host="show"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https" android:host="app.what3words.com"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https" android:host="what3words.app.link"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https" android:host="what3words-alternate.app.link"/>
+            </intent-filter>
+            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
+        </activity>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.MainActivity" android:windowSoftInputMode="adjustNothing"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.usermanagement.LoginActivity" android:windowSoftInputMode="adjustNothing"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.usermanagement.LoginReminderActivity" android:windowSoftInputMode="adjustNothing"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.usermanagement.ForgotPasswordActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.usermanagement.signup.SignUpActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.usermanagement.EditAccountActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.workinprogress.resources.webview.WebViewActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.update.WhatsNewActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:label="@string/compass_navigation_title" android:icon="@drawable/ic_compass" android:name="com.what3words.android.p018ui.compass.CompassActivity" android:exported="true">
+            <intent-filter android:priority="100">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="geo"/>
+            </intent-filter>
+        </activity>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.usermanagement.ChangePasswordActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.search.OCRActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.search.OCRActivityV21"/>
+        <activity android:theme="@style/Theme.Transparent" android:label="@string/cabify_app_name" android:icon="@drawable/ic_cabify" android:name="com.what3words.android.p018ui.customdirections.CabifyActivity" android:exported="true"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.splash.ChinaSplashActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.search.SearchActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.appshortcuts.ShortcutHelperActivity"/>
+        <activity android:theme="@style/Theme.AppCompat.Translucent" android:name="com.what3words.android.p018ui.note.AddNoteActivity" android:windowSoftInputMode="stateAlwaysVisible"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.locations.MyListsActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.pendingInvites.PendingInvitesActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.changeLists.ChangeListsActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.savedLocations.SavedLocationsActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.sharelist.ShareListActivity" android:windowSoftInputMode="adjustUnspecified|stateHidden|adjustResize"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.settings.photo.PhotosSettingsActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.settings.distance.DistanceSettingsActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.settings.notification.NotificationsSettingsActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.settings.blockedUsers.ManageBlockedUsersActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.settings.maptype.MapTypeSettingsActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.settings.debug.DebugSettingsActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.settings.waystouse.WaysToUseActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.settings.navigation.NavigationMenuActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.settings.AdvancedSettingsActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.settings.LanguageSettingsActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.main.settings.features.DashboardActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.android.p018ui.shared.ViewSharedListActivity"/>
+        <service android:name="com.what3words.android.utils.PushNotificationService" android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <meta-data android:name="com.urbanairship.autopilot" android:value="com.what3words.android.utils.W3WAutopilot"/>
+        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_nbqOECWY4A90nyRrnMWomllasrpReGuD"/>
+        <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_eetRCz3Z8F9YpzQvfTYBpdmezEfKhQuP"/>
+        <meta-data android:name="io.branch.sdk.TestMode" android:value="false"/>
+        <activity android:theme="@style/Theme.AppCompat.NoActionBar" android:name="com.what3words.photos.android.camera.TakePhotoActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize" android:hardwareAccelerated="true"/>
+        <activity android:theme="@style/Theme.AppCompat.NoActionBar" android:name="com.what3words.photos.android.preview.EditPhotoActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <service android:name="com.what3words.photos.android.services.SaveImageService" android:exported="false"/>
+        <activity android:theme="@style/com_facebook_activity_theme" android:label="@string/w3w_app_name" android:name="com.facebook.FacebookActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+        <activity android:name="com.facebook.CustomTabActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="@string/fb_login_protocol_scheme"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="fbconnect" android:host="cct.com.what3words.android"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.what3words.sharingsettings.language.invalidate.LanguageInvalidatorActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:label="@string/menu_share_settings" android:name="com.what3words.sharingsettings.sharing.ShareSettingsActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:label="@string/select_language_title" android:name="com.what3words.sharingsettings.language.LanguageSelectorActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.sharingsettings.startup.StartupActivity"/>
+        <activity android:theme="@style/BlueSystemWindows" android:name="com.what3words.sharingsettings.dataselector.W3wDataSelectorActivity"/>
+        <service android:name="com.google.firebase.components.ComponentDiscoveryService" android:exported="false" android:directBootAware="true">
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.remoteconfig.RemoteConfigRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.dynamiclinks.internal.FirebaseDynamicLinkRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.iid.Registrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.abt.component.AbtRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.dynamicloading.DynamicLoadingRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+        </service>
+        <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled" android:value="false"/>
+        <activity android:name="com.facebook.CustomTabMainActivity"/>
+        <activity android:theme="@style/PlacesAutocompleteOverlay" android:label="@string/places_autocomplete_label" android:name="com.google.android.libraries.places.widget.AutocompleteActivity" android:exported="false" android:windowSoftInputMode="adjustResize"/>
+        <service android:name="com.urbanairship.push.fcm.AirshipFirebaseMessagingService" android:exported="false">
+            <intent-filter android:priority="-1">
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <activity android:label="@string/title_activity_force_change_password" android:name="com.amazonaws.mobile.auth.userpools.ForceChangePasswordActivity" android:screenOrientation="portrait" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+        <activity android:label="@string/title_activity_forgot_password" android:name="com.amazonaws.mobile.auth.userpools.ForgotPasswordActivity" android:screenOrientation="portrait" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+        <activity android:label="@string/title_activity_sign_up" android:name="com.amazonaws.mobile.auth.userpools.SignUpActivity" android:screenOrientation="portrait" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+        <activity android:label="@string/title_activity_mfa" android:name="com.amazonaws.mobile.auth.userpools.MFAActivity" android:screenOrientation="portrait" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+        <activity android:label="@string/title_activity_sign_up_confirm" android:name="com.amazonaws.mobile.auth.userpools.SignUpConfirmActivity" android:screenOrientation="portrait" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+        <receiver android:name="com.google.android.gms.analytics.AnalyticsReceiver" android:enabled="true" android:exported="false"/>
+        <service android:name="com.google.android.gms.analytics.AnalyticsService" android:enabled="true" android:exported="false"/>
+        <service android:name="com.google.android.gms.analytics.AnalyticsJobService" android:permission="android.permission.BIND_JOB_SERVICE" android:enabled="true" android:exported="false"/>
+        <activity android:theme="@style/Theme.AppInvite.Preview" android:name="com.google.android.gms.appinvite.PreviewActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.appinvite.ACTION_PREVIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver" android:enabled="true" android:exported="false"/>
+        <service android:name="com.google.android.gms.measurement.AppMeasurementService" android:enabled="true" android:exported="false"/>
+        <service android:name="com.google.android.gms.measurement.AppMeasurementJobService" android:permission="android.permission.BIND_JOB_SERVICE" android:enabled="true" android:exported="false"/>
+        <service android:name="com.google.firebase.messaging.FirebaseMessagingService" android:exported="false" android:directBootAware="true">
+            <intent-filter android:priority="-500">
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <provider android:name="com.facebook.internal.FacebookInitProvider" android:exported="false" android:authorities="com.what3words.android.FacebookInitProvider"/>
+        <receiver android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <service android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery" android:exported="false">
+            <meta-data android:name="backend:com.google.android.datatransport.cct.CctBackendFactory" android:value="cct"/>
+        </service>
+        <provider android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer" android:exported="false" android:multiprocess="true" android:authorities="com.what3words.android.lifecycle-process"/>
+        <activity android:theme="@style/Theme.NoDisplay" android:name="com.urbanairship.push.NotificationProxyActivity" android:exported="false" android:taskAffinity="com.urbanairship.push.NotificationProxyActivity"/>
+        <activity android:theme="@style/UrbanAirship.HelperActivity" android:name="com.urbanairship.util.HelperActivity" android:exported="false">
+            <meta-data android:name="com.urbanairship.push.iam.EXCLUDE_FROM_AUTO_SHOW" android:value="true"/>
+        </activity>
+        <activity android:theme="@style/Theme.Translucent.NoTitleBar" android:name="com.urbanairship.google.PlayServicesErrorActivity" android:exported="false">
+            <meta-data android:name="com.urbanairship.push.iam.EXCLUDE_FROM_AUTO_SHOW" android:value="true"/>
+        </activity>
+        <activity android:theme="@style/UrbanAirship.RateAppActivity" android:name="com.urbanairship.actions.RateAppActivity" android:exported="false">
+            <meta-data android:name="com.urbanairship.push.iam.EXCLUDE_FROM_AUTO_SHOW" android:value="true"/>
+            <intent-filter>
+                <action android:name="com.urbanairship.actions.SHOW_RATE_APP_INTENT_ACTION"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.urbanairship.actions.WalletLoadingActivity" android:exported="false" android:noHistory="true"/>
+        <receiver android:name="com.urbanairship.push.NotificationProxyReceiver" android:exported="false">
+            <intent-filter android:priority="-999">
+                <action android:name="com.urbanairship.push.OPENED"/>
+                <category android:name="com.what3words.android"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.urbanairship.locale.LocaleChangeReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <provider android:name="com.urbanairship.UrbanAirshipProvider" android:exported="false" android:authorities="com.what3words.android.urbanairship.provider"/>
+        <provider android:name="androidx.work.impl.WorkManagerInitializer" android:exported="false" android:multiprocess="true" android:authorities="com.what3words.android.workmanager-init" android:directBootAware="false"/>
+        <service android:name="androidx.work.impl.background.systemalarm.SystemAlarmService" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:directBootAware="false"/>
+        <service android:name="androidx.work.impl.background.systemjob.SystemJobService" android:permission="android.permission.BIND_JOB_SERVICE" android:enabled="@bool/enable_system_job_service_default" android:exported="true" android:directBootAware="false"/>
+        <service android:name="androidx.work.impl.foreground.SystemForegroundService" android:enabled="@bool/enable_system_foreground_service_default" android:exported="false" android:directBootAware="false"/>
+        <receiver android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver" android:enabled="true" android:exported="false" android:directBootAware="false"/>
+        <receiver android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy" android:enabled="false" android:exported="false" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy" android:enabled="false" android:exported="false" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_OKAY"/>
+                <action android:name="android.intent.action.BATTERY_LOW"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy" android:enabled="false" android:exported="false" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="android.intent.action.DEVICE_STORAGE_LOW"/>
+                <action android:name="android.intent.action.DEVICE_STORAGE_OK"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy" android:enabled="false" android:exported="false" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver" android:enabled="false" android:exported="false" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver" android:permission="android.permission.DUMP" android:enabled="true" android:exported="true" android:directBootAware="false">
+            <intent-filter>
+                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:permission="com.google.android.c2dm.permission.SEND" android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            </intent-filter>
+        </receiver>
+        <activity android:theme="@style/Theme.Translucent.NoTitleBar" android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity" android:exported="false" android:excludeFromRecents="true"/>
+        <service android:name="com.google.android.gms.auth.api.signin.RevocationBoundService" android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" android:exported="true"/>
+        <activity android:theme="@style/Theme.Translucent.NoTitleBar" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:exported="false"/>
+        <provider android:name="com.google.firebase.provider.FirebaseInitProvider" android:exported="false" android:authorities="com.what3words.android.firebaseinitprovider" android:initOrder="100" android:directBootAware="true"/>
+        <service android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService" android:permission="android.permission.BIND_JOB_SERVICE" android:exported="false"/>
+        <receiver android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver" android:exported="false"/>
+        <service android:name="androidx.room.MultiInstanceInvalidationService" android:exported="false" android:directBootAware="true"/>
+        <activity android:name="com.mixpanel.android.mpmetrics.MixpanelNotificationRouteActivity"/>
+        <receiver android:name="com.mixpanel.android.mpmetrics.MixpanelPushNotificationDismissedReceiver"/>
+        <meta-data android:name="io.fabric.ApiKey" android:value="252e9dedc13371bf0aae0075f1d8e4c14f76b67e"/>
+        <meta-data android:name="com.android.dynamic.apk.fused.modules" android:value="base"/>
+        <meta-data android:name="com.android.stamp.source" android:value="https://play.google.com/store"/>
+        <meta-data android:name="com.android.stamp.type" android:value="STAMP_TYPE_STANDALONE_APK"/>
+        <meta-data android:name="com.android.vending.splits" android:value="@xml/splits0"/>
+        <meta-data android:name="com.android.vending.derived.apk.id" android:value="1"/>
+    </application>
+</manifest>
